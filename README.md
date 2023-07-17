@@ -19,12 +19,12 @@ RemoteMiddlewarePlugin({
 		}),
 ```
 
-```javascript
 Using the [webpack advanced-api](https://github.com/module-federation/module-federation-examples/blob/679e278076ce335ba9e0b882df09818831eaf21a/advanced-api/dynamic-remotes/app1/src/App.js#L3), call this method before the factory is called:
 
+```javascript
 //use whatever encryption key and IV you set for building the remote.
-		await self["remote_init"](
-			"T3sxMgCb9r1DeMgsDzRzD3zs6NhBybFM",
-			"6TBsV3h0JyZo1NCR"
-		);
+await self["remote_init"](
+	"T3sxMgCb9r1DeMgsDzRzD3zs6NhBybFM",
+	"6TBsV3h0JyZo1NCR"
+);
 ```
