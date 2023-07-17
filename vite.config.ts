@@ -19,7 +19,7 @@ export default defineConfig({
 			fileName: "index",
 		},
 		rollupOptions: {
-			external: ["unplugin", "fs", "path", "axios"],
+			external: ["unplugin", "fs", "path", "axios", "crypto"],
 			output: {
 				globals: {
 					unplugin: "unplugin",

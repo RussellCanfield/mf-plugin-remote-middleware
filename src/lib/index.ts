@@ -1,3 +1,3 @@
-import { FederationDashboard as plugin } from "./FederationDashboard";
+import { RemoteMiddlewarePlugin as plugin } from "./RemoteMiddleware";
 
-export const FederationDashboard = plugin.webpack;
+export const RemoteMiddlewarePlugin = plugin.webpack;
