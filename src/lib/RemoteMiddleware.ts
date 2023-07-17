@@ -5,11 +5,18 @@ import { Encrypt } from "./server-crypt";
 export type RemoteMiddlewareConfig = {
 	remoteEntryFilename: string;
 	containerName: string;
+	encryptionKey: string;
+	encryptionIV: string;
 };
 
 export const RemoteMiddlewarePlugin = createUnplugin(
 	(options: RemoteMiddlewareConfig) => {
-		const { remoteEntryFilename, containerName } = options;
+		const {
+			remoteEntryFilename,
+			containerName,
+			encryptionIV,
+			encryptionKey,
+		} = options;
 
 		return {
 			name: "modulefederation/remote-middleware",
@@ -29,8 +36,8 @@ export const RemoteMiddlewarePlugin = createUnplugin(
 
 					const digest = Encrypt(
 						containerName,
-						"T3sxMgCb9r1DeMgsDzRzD3zs6NhBybFM",
-						"6TBsV3h0JyZo1NCR"
+						encryptionKey,
+						encryptionIV
 					);
 
 					const replaceSource = new ReplaceSource(existingSource);

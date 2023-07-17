@@ -1,36 +1,20 @@
-# Module Federation Dashboard Plugin
+# Module Federation Remote Middleware Plugin
 
-This plugin is a simple webpack plugin for module federation, that allows you to visualize federated modules, their relationships with other modules and their shared dependencies.
+This plugin is compatible with "var" (default) type remotes. It allows you to establish a function that runs before the remote is bootstrapped. In this case, the default functionality is to allow the consumer to pass it an encryption key and IV, if it matches what was used at build time, the remote will initialize otherwise it will throw.
 
 ## How to use
 
-```javascript
-const federationConfig = {
-	name: "host",
-	filename: "remoteEntry.js",
-	remotes: {
-		remote: "remote@http://localhost:3001/remoteEntry.js",
-		remotesecond: "remotesecond@http://localhost:3002/remoteEntry.js",
-	},
-	exposes: {},
-	shared: {
-		...deps,
-		react: {
-			singleton: true,
-			requiredVersion: deps.react,
-		},
-		"react-dom": {
-			singleton: true,
-			requiredVersion: deps["react-dom"],
-		},
-	},
-};
+### Add to webpack
 
-new ModuleFederationPlugin(federationConfig),
-FederationDashboard({
-	federationDashboardUrl: "http://localhost", //required - this is where your dashboard API is running (TODO: Add link to repo in README)
-	...federationConfig,
-	host: "host", //optional - if your application is a top level application such as the "shell" concept
-	version: "1.0.0" //optional - if you version your modules, provide the value here (does not need to be semver compliant)
-}),
+```javascript
+const {
+	RemoteMiddlewarePlugin,
+} = require("@practicaljs/modulefederation-remote-middleware");
+
+RemoteMiddlewarePlugin({
+			remoteEntryFilename: "remoteEntry.js",
+			containerName: "remote",
+			encryptionKey: "T3sxMgCb9r1DeMgsDzRzD3zs6NhBybFM",
+			encryptionIV: "6TBsV3h0JyZo1NCR"
+		}),
 ```
