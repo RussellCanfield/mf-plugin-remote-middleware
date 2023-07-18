@@ -70,7 +70,7 @@ export const RemoteMiddlewarePlugin = createUnplugin(
 											cryptoKey,
 											base64ToArrayBuffer('${digest}')
 										).then(decryptedBuffer => {
-											if ("remote" === new TextDecoder().decode(decryptedBuffer)) {
+											if ("${containerName}" === new TextDecoder().decode(decryptedBuffer)) {
 												init();
 												resolve();
 											} else {
